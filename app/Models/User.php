@@ -67,4 +67,15 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Coupon::class)->withPivot('used_at')->withTimestamps();
     }
+    public function cart()
+    {
+        return $this->hasOne(Cart::class);
+    }
+    public function wishlists()
+{
+    return $this->hasMany(WishList::class);
+}
+public function feedbacks(){
+    return $this->hasMany(Feedback::class);
+}
 }

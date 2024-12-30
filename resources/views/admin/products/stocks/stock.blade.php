@@ -59,7 +59,7 @@
                                         <td>
                                             <div class="d-flex gap-3">
                                                 <button class="btn btn-success fa fa-edit text-white me-2" data-toggle="modal" data-target="#UpdateStockModalCenter{{ $product->id }}"></button>
-                                                <button class="btn btn-danger fa fa-trash text-white ms-2"></button>
+                                               <!-- <button class="btn btn-danger fa fa-trash text-white ms-2"></button>-->
                                             </div>
                                         </td>
                                     </tr>

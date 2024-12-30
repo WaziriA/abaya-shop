@@ -17,10 +17,10 @@ return new class extends Migration
             $table->enum('gender', ['male', 'female', 'other']);
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
-            $table->string('country');
-            $table->string('phone_no');
-            $table->string('phone_no2');
-            $table->enum('role', ['owner', 'staff', 'customer']);
+            $table->string('country')->nullable();
+            $table->string('phone_no')->nullable();
+            $table->string('phone_no2')->nullable();
+            $table->enum('role', ['owner', 'staff', 'customer'])->default('customer');
             $table->string('photo')->nullable();
             $table->softDeletes(); // Add this line for soft deletes
             $table->boolean('IsActive')->default(true);

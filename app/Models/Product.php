@@ -15,7 +15,10 @@ class Product extends Model
         'name',
         'description',
         'brand',
-        'price',
+        'price_usd',
+        'price_gbp',
+        'price_eur',
+        'price_aed',
         'sku',
         'stock',
         'availability_status',
@@ -36,7 +39,22 @@ class Product extends Model
     public function reviews(){
         return $this->hasMany(Review::class);
     }
-    public function orders(){
+    /*public function orders(){
         return $this->hasMany(Order::class);
-     }
+     }*/
+
+     public function orders()
+{
+    return $this->belongsToMany(Order::class, 'order_product')->withPivot('quantity');
+}
+
+     public function wishlists()
+{
+    return $this->hasMany(WishList::class);
+}
+public function isOnSale()
+{
+    // Example logic to determine if the product is on sale
+    return $this->sale_price > 0 && $this->sale_price < $this->regular_price;
+}
 }

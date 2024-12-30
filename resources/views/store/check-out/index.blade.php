@@ -1,331 +1,319 @@
 @extends('store.layout')
 @section('content')
 
-<section id="aa-catg-head-banner">
-    <img src="{{ asset('material/img/fashion/fashion-header-bg-8.jpg')}}" alt="fashion img">
-    <div class="aa-catg-head-banner-area">
-     <div class="container">
-      <div class="aa-catg-head-banner-content">
-        <h2>Checkout Page</h2>
-        <ol class="breadcrumb">
-          <li><a href="index.html">Home</a></li>                   
-          <li class="active">Checkout</li>
-        </ol>
-      </div>
-     </div>
-   </div>
-  </section>
-  <!-- / catg header banner section -->
 
- <!-- Cart view section -->
- <section id="checkout">
-   <div class="container">
-     <div class="row">
-       <div class="col-md-12">
-        <div class="checkout-area">
-          <form action="{{ route('placeOrder') }}" method="POST">
-            @csrf
-            <div class="row">
-              <div class="col-md-8">
-                <div class="checkout-left">
-                  <div class="panel-group" id="accordion">
+ <!-- / Cart view section -->
+
+ <!-- Breadcrumb Start -->
+ <div class="breadcrumb-wrap">
+  <div class="container">
+      <ul class="breadcrumb">
+          <li class="breadcrumb-item"><a href="{{ route('home.index')}}">Home</a></li>
+          <li class="breadcrumb-item"><a href="{{ route('shop.index')}}">Products</a></li>
+          <li class="breadcrumb-item active">Checkout</li>
+      </ul>
+  </div>
+</div>
+<!-- Breadcrumb End -->
+
+<!-- Checkout Start -->
+<div class="checkout">
+  <div class="container"> 
+    <form action="{{ route('placeOrder') }}" method="POST">
+        @csrf
+      <div class="row">
+          <div class="col-md-7">
+              <div class="billing-address">
+                  <h2>Shipping Address</h2>
+                  <div class="row">
+                      <div class="col-md-6">
+                        <label for="agent_name">Shipping Agent</label>
+                                <select name="transpoter_id" id="agent_name" class="form-control custom-select">
+                                  <option value="">Choose Shipping Agent</option>
+                                @foreach($transpoters as $transpoter)
+                                   <option value="{{ $transpoter->id }}">{{ $transpoter->transpoter_name }}</option>
+                                @endforeach
+                                </select>
+                      </div>
+                      <div class="col-md-6">
+                        <label for="shipment_method">Shipment Method</label>
+                        <select name="shipment_method_id" id="shipment_method" class="form-control custom-select">
+                            <option value="">Choose Shipment Method</option>
+                        </select>
+                      </div>
+                      <div class="col-md-12">
+                        <label for="country">Delivery Country</label>
+                        <select name="country_id" id="country" class="form-control">
+                           <option value="">Choose Delivery Country</option>
+                        </select>
+                      </div>
+                      
+                      
                     
-                    <!-- Shipping Address -->
-                    <div class="panel panel-default aa-checkout-billaddress">
-                      <div class="panel-heading">
-                        <h4 class="panel-title">
-                          <a data-toggle="collapse" data-parent="#accordion" href="#collapseFour">
-                            Shippping Address
-                          </a>
-                        </h4>
+                      <div class="col-md-6">
+                          <label>City</label>
+                          <input type="text" name="town" class="form-control" placeholder="City / Town*">
                       </div>
-                      <div id="collapseFour" class="panel-collapse collapse">
-                        <div class="panel-body">
-                         <div class="row">
-                            <div class="col-md-6">
-                              <div class="aa-checkout-single-bill">
-                               <!-- <input type="text" name="first_name" placeholder="Agent name*" required>-->
-                               <select name="agent_name" id="agent_name">
-                                <option value="#">United Kingdom</option>
-                                
-                               </select>
-                              </div>                             
-                            </div>
-                            <div class="col-md-6">
-                              <div class="aa-checkout-single-bill">
-                                <select name="shipment_method" id="shipment_method">
-                                  <option value="">United Kingdom</option>
-                                  
-                                 </select>
-                              </div>
-                            </div>
-                          </div> 
-                             
-                          <div class="row">
-                            <div class="col-md-12">
-                              <div class="aa-checkout-single-bill">
-                                <select name="country" id="country">
-                                  <option value="">United Kingdom</option>
-                                  
-                                 </select>
-                              </div>                             
-                            </div>                            
-                          </div>
-                          <div class="row">
-                            
-                            <div class="col-md-6">
-                              <div class="aa-checkout-single-bill">
-                                <input type="text" name="town" placeholder="City / Town*">
-                              </div>
-                            </div>
-
-                            <div class="col-md-6">
-                              <div class="aa-checkout-single-bill">
-                                <input type="text" name="district" placeholder="District*" required>
-                              </div>                             
-                            </div>
-
-                          </div>   
-                          <div class="row">
-                            
-                            <div class="col-md-6">
-                              <div class="aa-checkout-single-bill">
-                                <input type="text" name="street" placeholder="Street*" required>
-                              </div>                             
-                            </div>
-
-                            <div class="col-md-6">
-                              <div class="aa-checkout-single-bill">
-                                <input type="text" name="zip_code" placeholder="Postcode / ZIP(Optional)">
-                              </div>
-                            </div>
-                          </div> 
-                           <div class="row">
-                            <div class="col-md-12">
-                              <div class="aa-checkout-single-bill">
-                                <textarea cols="8" rows="3" name="cost" placeholder="Shipping cost"></textarea>
-                              </div>                             
-                            </div>                            
-                          </div>              
-                        </div>
+                      <div class="col-md-6">
+                          <label>District</label>
+                          <input type="text" name="district" class="form-control" placeholder="District*" >
                       </div>
+                      <div class="col-md-6">
+                        <label>Street</label>
+                        <input type="text" name="street" class="form-control" placeholder="Street*" >
                     </div>
+                      
+                      <div class="col-md-6">
+                          <label>ZIP Code</label>
+                          <input class="form-control" type="text" placeholder="ZIP Code">
+                      </div>
+
+                      <div class="col-md-12">
+                        <label>Description About your Order(option)</label>
+                        <textarea cols="8" rows="3" name="note" class="form-control" placeholder="Add Some Explanation About Your Order(Option)"></textarea>
+                    </div>
+                    <!--
+                      -->
                   </div>
-                </div>
               </div>
-
-              
-
-              <div class="col-md-4">
-    <div class="checkout-right">
-        <h4>Order Summary</h4>
-        <div class="aa-order-summary-area">
-            <table class="table table-responsive">
-                <thead>
-                    <tr>
-                        <th>Product</th>
-                        <th>Total</th>
-                    </tr>
-                </thead>
-                <tbody>
+          </div>
+          <div class="col-md-5">
+              <div class="checkout-summary">
+                  <h2>Cart Total</h2>
+                  <div class="checkout-content">
+                    <h3>Products</h3>
                     @php
-                        $subtotal = 0; // Initialize subtotal
+                       $subtotal = 0; // Initialize subtotal
                     @endphp
-
                     @foreach($cart as $productId => $item)
                     @php
                         $itemTotal = $item['price'] * $item['quantity']; // Calculate total for each item
                         $subtotal += $itemTotal; // Add to subtotal
-                    @endphp
-                    <tr>
-                        <td>{{ $item['name'] }} <strong>x {{ $item['quantity'] }}</strong></td>
-                        <td>${{ number_format($itemTotal, 2) }}</td>
-                    </tr>
-                    @endforeach
-                </tbody>
-                <tfoot>
-                    <tr>
-                        <th>Subtotal</th>
-                        <td>${{ number_format($subtotal, 2) }}</td>
-                    </tr>
-                    <tr>
-                        <th>Tax (assumed 5%)</th>
-                        @php
-                            $tax = $subtotal * 0.05; // Calculate tax
-                        @endphp
-                        <td>${{ number_format($tax, 2) }}</td>
-                    </tr>
-                    <tr>
-                        <th>Total</th>
-                        @php
-                            $total = $subtotal + $tax; // Calculate total
-                        @endphp
-                        <td>${{ number_format($total, 2) }}</td>
-                    </tr>
-                </tfoot>
-            </table>
-        </div>
-        <h4>Payment Method</h4>
-        <div class="aa-payment-method">                    
-            <label for="cashdelivery">
-                <input type="radio" id="cashdelivery" name="payment_method"> Cash on Delivery
-            </label>
-            <label for="paypal">
-                <input type="radio" id="paypal" name="payment_method" checked> Via Paypal
-            </label>
-               
-            <input type="submit" value="Place Order" class="aa-browse-btn">                
-        </div>
-    </div>
+                       @endphp
+                      
+                      <p>{{ $item['name'] }} <strong>x {{ $item['quantity'] }}</strong><span>{{ $currency }} {{ number_format($itemTotal, 2) }}</span></p>
+                      @endforeach
+                      <p class="sub-total">Sub Total<span>{{ $currency }} {{ number_format($subtotal, 2) }}</span></p>
+                      <p class="ship-cost">Shipping Cost<span id="shipping-cost" >{{ $currency }} {{ number_format(session('shipping_cost', 0), 2) }}</span></p>
+                      <h4>Grand Total<span id="cart-total">{{ $currency }} {{ number_format(session('cart_total'), 2) }}</span></h4>
+                  </div>
+              </div>
+
+             
+              
+               <!-- Payment Methods Section -->
+          <div class="checkout-payment">
+            <h2>Payment Methods</h2>
+            <div class="payment-methods">
+              @php
+                $paymentMethods = [
+                  ['id' => 'paypal', 'label' => 'Paypal'],
+                  ['id' => 'credit_card', 'label' => 'Credit/Debit Card'],
+                 /* ['id' => 'samsung_pay', 'label' => 'SamsungPay'],
+                  ['id' => 'app_pay', 'label' => 'AppPay'],
+                  ['id' => 'cod', 'label' => 'Cash on Delivery'],*/
+                ];
+              @endphp
+
+              @foreach($paymentMethods as $method)
+                <div class="payment-method">
+                  <div class="custom-control custom-radio">
+                    <input 
+                      type="radio" 
+                      class="custom-control-input" 
+                      id="payment-{{ $method['id'] }}" 
+                      name="payment_method" 
+                      value="{{ $method['id'] }}" 
+                      required 
+                    />
+                    <label class="custom-control-label" for="payment-{{ $method['id'] }}">{{ $method['label'] }}</label>
+                  </div>
+
+                  <div class="payment-content" id="payment-{{ $method['id'] }}-show">
+                    @if ($method['id'] == 'credit_card')
+                        <div class="stripe-payment-form">
+                            <label for="card-element">Credit or debit card</label>
+                            <div id="card-element">
+                                <!-- A Stripe Element will be inserted here. -->
+                            </div>
+                            <!-- Used to display form errors. -->
+                            <div id="card-errors" role="alert"></div>
+                        </div>
+                    @else
+                        <p>Additional information about {{ $method['label'] }} can go here.</p>
+                    @endif
+                  </div>
+                </div>
+              @endforeach
+            </div>
+            <div class="checkout-btn">
+              <button type="submit">Place Order</button>
+            </div>
+          </div>
+          </div>
+      </div>
+    </form>
+  </div>
 </div>
 
-            </div>
-          </form>
-         </div>
-       </div>
-     </div>
-   </div>
+<!-- Checkout End -->
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+    // Set your publishable key here
+    const stripe = Stripe('your-publishable-key'); // Replace with your Stripe publishable key
+    const elements = stripe.elements();
 
-   
-   
- </section>
- <!-- / Cart view section -->
+    // Create an instance of the card Element
+    const card = elements.create('card');
+    
+    // Add an instance of the card Element to the DOM
+    card.mount('#card-element');
+
+    // Handle form submission
+    const form = document.querySelector('form');
+    const placeOrderButton = document.getElementById('place-order-btn');
+
+    form.addEventListener('submit', async function (event) {
+        event.preventDefault();
+
+        const paymentMethod = document.querySelector('input[name="payment_method"]:checked').value;
+
+        // Only handle Stripe payment if selected
+        if (paymentMethod === 'credit_card') {
+            const { token, error } = await stripe.createToken(card);
+
+            if (error) {
+                // Display error in the form
+                const errorElement = document.getElementById('card-errors');
+                errorElement.textContent = error.message;
+            } else {
+                // Send token to your server
+                // Use AJAX or form submission to send the token
+                handlePaymentToken(token.id);
+            }
+        } else {
+            // Handle other payment methods (like PayPal, COD, etc.)
+            form.submit();
+        }
+    });
+
+    function handlePaymentToken(token) {
+        // Send the token to your server for processing
+        fetch('/process-stripe-payment', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ stripeToken: token }),
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                window.location.href = '/stripe-success'; // Redirect on success
+            } else {
+                alert('Payment failed');
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('Payment failed');
+        });
+    }
+});
+
+</script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function () {
+        function updateShippingCost() {
+            var transpoter_id = $('#agent_name').val();
+            var shipment_method_id = $('#shipment_method').val();
+            var country_id = $('#country').val();
+
+            if (transpoter_id && shipment_method_id && country_id) {
+                $.ajax({
+                    url: '/calculate-shipping-cost',
+                    type: 'POST',
+                    data: {
+                        _token: '{{ csrf_token() }}',
+                        transpoter_id: transpoter_id,
+                        shipment_method_id: shipment_method_id,
+                        country_id: country_id
+                    },
+                    success: function (response) {
+                        if (response.success && response.shipping_cost !== undefined) {
+                            var shippingCost = parseFloat(response.shipping_cost).toFixed(2);
+                            $('#shipping-cost').text(shippingCost);
+
+                            var subTotal = parseFloat('{{ $subtotal }}'); // Get Sub Total value
+                            var grandTotal = subTotal + parseFloat(response.shipping_cost);
+
+                            $('#cart-total').text(grandTotal.toFixed(2)); // Update Grand Total
+
+                            // Update hidden input fields in checkout form
+                            $('input[name="transpoter_id"]').val(transpoter_id);
+                            $('input[name="shipment_method_id"]').val(shipment_method_id);
+                            $('input[name="country_id"]').val(country_id);
+
+                            // Update readonly fields for display
+                            $('#agent_name_readonly').val($('#agent_name option:selected').text());
+                            $('#shipment_method_readonly').val($('#shipment_method option:selected').text());
+                            $('#country_readonly').val($('#country option:selected').text());
+                        } else {
+                            alert('Not in the range, contact owner 0627370387.');
+                            $('#shipping-cost').text('0.00');
+                            $('#cart-total').text('{{ $subtotal }}'); // Reset Grand Total to Sub Total
+                        }
+                    },
+                    error: function () {
+                        alert('An error occurred while calculating shipping cost.');
+                    }
+                });
+            }
+        }
+
+        $('#agent_name, #shipment_method, #country').change(updateShippingCost);
+
+        // Populate shipment method and country dynamically
+        $('#agent_name').change(function () {
+            var transpoter_id = $(this).val();
+            if (transpoter_id) {
+                $.ajax({
+                    url: '/get-related-data',
+                    type: 'POST',
+                    data: {
+                        _token: '{{ csrf_token() }}',
+                        transpoter_id: transpoter_id
+                    },
+                    success: function (data) {
+                        $('#shipment_method').empty().append('<option value="">Choose Shipment Method</option>');
+                        $('#country').empty().append('<option value="">Choose Delivery Country</option>');
+
+                        if (data.shipment_methods.length > 0) {
+                            data.shipment_methods.forEach(function (method) {
+                                $('#shipment_method').append('<option value="' + method.id + '">' + method.method_name + '</option>');
+                            });
+                        } else {
+                            alert('Not in the range, contact owner 0627370387.');
+                        }
+
+                        if (data.countries.length > 0) {
+                            data.countries.forEach(function (country) {
+                                $('#country').append('<option value="' + country.id + '">' + country.country_name + '</option>');
+                            });
+                        } else {
+                            alert('Not in the range, contact owner 0627370387.');
+                        }
+                    },
+                    error: function () {
+                        alert('An error occurred while fetching related data.');
+                    }
+                });
+            } else {
+                $('#shipment_method').empty().append('<option value="">Choose Shipment Method</option>');
+                $('#country').empty().append('<option value="">Choose Delivery Country</option>');
+            }
+        });
+    });
+</script>
 @endsection
-
-<!-- Coupon section 
-                    <div class="panel panel-default aa-checkout-coupon">
-                      <div class="panel-heading">
-                        <h4 class="panel-title">
-                          <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
-                            Have a Coupon?
-                          </a>
-                        </h4>
-                      </div>
-                      <div id="collapseOne" class="panel-collapse collapse in">
-                        <div class="panel-body">
-                          <input type="text" placeholder="Coupon Code" class="aa-coupon-code">
-                          <input type="submit" value="Apply Coupon" class="aa-browse-btn">
-                        </div>
-                      </div>
-                    </div>-->
-                    <!-- Login section
-                    <div class="panel panel-default aa-checkout-login">
-                      <div class="panel-heading">
-                        <h4 class="panel-title">
-                          <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
-                            Client Login 
-                          </a>
-                        </h4>
-                      </div>
-                      <div id="collapseTwo" class="panel-collapse collapse">
-                        <div class="panel-body">
-                          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quaerat voluptatibus modi pariatur qui reprehenderit asperiores fugiat deleniti praesentium enim incidunt.</p>
-                          <input type="text" placeholder="Username or email">
-                          <input type="password" placeholder="Password">
-                          <button type="submit" class="aa-browse-btn">Login</button>
-                          <label for="rememberme"><input type="checkbox" id="rememberme"> Remember me </label>
-                          <p class="aa-lost-password"><a href="#">Lost your password?</a></p>
-                        </div>
-                      </div>
-                    </div> -->
-                    <!-- Billing Details
-                    <div class="panel panel-default aa-checkout-billaddress">
-                      <div class="panel-heading">
-                        <h4 class="panel-title">
-                          <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
-                            Billing Details
-                          </a>
-                        </h4>
-                      </div>
-                      <div id="collapseThree" class="panel-collapse collapse">
-                        <div class="panel-body">
-                          <div class="row">
-                            <div class="col-md-6">
-                              <div class="aa-checkout-single-bill">
-                                <input type="text" placeholder="First Name*">
-                              </div>                             
-                            </div>
-                            <div class="col-md-6">
-                              <div class="aa-checkout-single-bill">
-                                <input type="text" placeholder="Last Name*">
-                              </div>
-                            </div>
-                          </div> 
-                          <div class="row">
-                            <div class="col-md-12">
-                              <div class="aa-checkout-single-bill">
-                                <input type="text" placeholder="Company name">
-                              </div>                             
-                            </div>                            
-                          </div>  
-                          <div class="row">
-                            <div class="col-md-6">
-                              <div class="aa-checkout-single-bill">
-                                <input type="email" placeholder="Email Address*">
-                              </div>                             
-                            </div>
-                            <div class="col-md-6">
-                              <div class="aa-checkout-single-bill">
-                                <input type="tel" placeholder="Phone*">
-                              </div>
-                            </div>
-                          </div> 
-                          <div class="row">
-                            <div class="col-md-12">
-                              <div class="aa-checkout-single-bill">
-                                <textarea cols="8" rows="3">Address*</textarea>
-                              </div>                             
-                            </div>                            
-                          </div>   
-                          <div class="row">
-                            <div class="col-md-12">
-                              <div class="aa-checkout-single-bill">
-                                <select>
-                                  <option value="0">Select Your Country</option>
-                                  <option value="1">Australia</option>
-                                  <option value="2">Afganistan</option>
-                                  <option value="3">Bangladesh</option>
-                                  <option value="4">Belgium</option>
-                                  <option value="5">Brazil</option>
-                                  <option value="6">Canada</option>
-                                  <option value="7">China</option>
-                                  <option value="8">Denmark</option>
-                                  <option value="9">Egypt</option>
-                                  <option value="10">India</option>
-                                  <option value="11">Iran</option>
-                                  <option value="12">Israel</option>
-                                  <option value="13">Mexico</option>
-                                  <option value="14">UAE</option>
-                                  <option value="15">UK</option>
-                                  <option value="16">USA</option>
-                                </select>
-                              </div>                             
-                            </div>                            
-                          </div>
-                          <div class="row">
-                            <div class="col-md-6">
-                              <div class="aa-checkout-single-bill">
-                                <input type="text" placeholder="Appartment, Suite etc.">
-                              </div>                             
-                            </div>
-                            <div class="col-md-6">
-                              <div class="aa-checkout-single-bill">
-                                <input type="text" placeholder="City / Town*">
-                              </div>
-                            </div>
-                          </div>   
-                          <div class="row">
-                            <div class="col-md-6">
-                              <div class="aa-checkout-single-bill">
-                                <input type="text" placeholder="District*">
-                              </div>                             
-                            </div>
-                            <div class="col-md-6">
-                              <div class="aa-checkout-single-bill">
-                                <input type="text" placeholder="Postcode / ZIP*">
-                              </div>
-                            </div>
-                          </div>                                    
-                        </div>
-                      </div>
-                    </div> -->

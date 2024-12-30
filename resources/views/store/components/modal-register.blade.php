@@ -3,7 +3,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="title" id="RegisterModalLabel">Register</h4>
+                <h4 class="title" id="RegisterModalLabel" style="font-family: nabi;">Register</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -90,7 +90,7 @@
             
                 
                 <div class="modal-footer">
-                <button type="button" class="btn btn-danger waves-effect" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-danger waves-effect" data-dismiss="modal" style="font-family: nabi;">Cancel</button>
             </div>
         
     </div>

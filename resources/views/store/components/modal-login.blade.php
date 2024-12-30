@@ -3,7 +3,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="title" id="LoginModalLabel">login</h4>
+                <h4 class="title" id="LoginModalLabel" style="font-family: nabi;">login</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -26,11 +26,14 @@
                         <button type="submit" class="btn btn-primary">Login</button>
                     </div>
                 </form>
+                <div class="col-12 mt-4" style="margin-top: 10px">
+                    <p class="small mb-0" style="font-family: nabi;"><strong>forgot password?</strong> <a href="{{ route('password.request')}}" target="_blank">click here</a></p>
+                </div>
             </div>
             
                 
                 <div class="modal-footer">
-                <button type="button" class="btn btn-danger waves-effect" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-danger waves-effect" data-dismiss="modal" style="font-family: nabi;">Cancel</button>
             </div>
         
     </div>

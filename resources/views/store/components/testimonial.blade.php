@@ -5,48 +5,57 @@
         <div class="col-md-12">
           <div class="aa-testimonial-area">
             <ul class="aa-testimonial-slider">
-              <!-- single slide -->
+              <!-- Check if there are any testimonials -->
+              @if($testimonials->isEmpty())
               <li>
                 <div class="aa-testimonial-single">
-                <img class="aa-testimonial-img" src="img/testimonial-img-2.jpg" alt="testimonial img">
+                <img class="aa-testimonial-img" src="{{asset('assets/images/avatar/1.png') }}" alt="testimonial img">
                   <span class="fa fa-quote-left aa-testimonial-quote"></span>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt distinctio omnis possimus, facere, quidem qui!consectetur adipisicing elit. Sunt distinctio omnis possimus, facere, quidem qui.</p>
+                  <p></p>
                   <div class="aa-testimonial-info">
-                    <p>Allison</p>
-                    <span>Designer</span>
-                    <a href="#">Dribble.com</a>
+                    <p></p>
+                    <span></span>
+                    <a href="#">No Testimonial</a>
                   </div>
                 </div>
               </li>
-              <!-- single slide -->
-              <li>
-                <div class="aa-testimonial-single">
-                <img class="aa-testimonial-img" src="img/testimonial-img-1.jpg" alt="testimonial img">
-                  <span class="fa fa-quote-left aa-testimonial-quote"></span>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt distinctio omnis possimus, facere, quidem qui!consectetur adipisicing elit. Sunt distinctio omnis possimus, facere, quidem qui.</p>
-                  <div class="aa-testimonial-info">
-                    <p>KEVIN MEYER</p>
-                    <span>CEO</span>
-                    <a href="#">Alphabet</a>
-                  </div>
-                </div>
-              </li>
-               <!-- single slide -->
-              <li>
-                <div class="aa-testimonial-single">
-                <img class="aa-testimonial-img" src="img/testimonial-img-3.jpg" alt="testimonial img">
-                  <span class="fa fa-quote-left aa-testimonial-quote"></span>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt distinctio omnis possimus, facere, quidem qui!consectetur adipisicing elit. Sunt distinctio omnis possimus, facere, quidem qui.</p>
-                  <div class="aa-testimonial-info">
-                    <p>Luner</p>
-                    <span>COO</span>
-                    <a href="#">Kinatic Solution</a>
-                  </div>
-                </div>
-              </li>
-            </ul>
+              @else
+                  <!-- Loop through the testimonials if available -->
+                  @foreach($testimonials as $testimonial)
+                      <li>
+                          <div class="aa-testimonial-single">
+                              <!-- Testimonial Image -->
+                              <img class="aa-testimonial-img" 
+                                   src="{{ $testimonial->image ? asset('storage/' . $testimonial->image) : asset('assets/images/avatar/1.png') }}" 
+                                   alt="testimonial img">
+          
+                              <!-- Quote Icon -->
+                              <span class="fa fa-quote-left aa-testimonial-quote"></span>
+          
+                              <!-- Testimonial Description -->
+                              <p>{{ $testimonial->description }}</p>
+          
+                              <!-- Testimonial Info -->
+                              <div class="aa-testimonial-info">
+                                  <!-- Testimonial Name -->
+                                  <p>{{ $testimonial->name }}</p>
+          
+                                  <!-- Testimonial Specialization (optional) -->
+                                  <span>{{ $testimonial->specialization ?? 'Specialization not provided' }}</span>
+          
+                                  <!-- Testimonial Company (optional) -->
+                                  <a href="#">{{ $testimonial->company ?? 'Company not provided' }}</a>
+                              </div>
+                          </div>
+                      </li>
+                  @endforeach
+              @endif
+          </ul>
+          
           </div>
         </div>
       </div>
     </div>
+
+    
   </section>

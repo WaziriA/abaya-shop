@@ -72,10 +72,10 @@
                 
                 <!-- Soft Delete Button with SweetAlert -->
                 <button class="btn btn-warning fa fa-archive text-white" onclick="confirmSoftDelete({{ $user->id }})"></button>
-                
+                @if(auth()->check() && auth()->user()->role === 'owner')
                 <!-- Hard Delete Button with SweetAlert -->
-                <button class="btn btn-danger fa fa-trash text-white" onclick="confirmHardDelete({{ $user->id }})"></button>
-
+                   <button class="btn btn-danger fa fa-trash text-white" onclick="confirmHardDelete({{ $user->id }})"></button>
+                 @endif
                 <!-- Soft Delete Form -->
                 <form id="soft-delete-form-{{ $user->id }}" action="{{ route('admin-users.softDelete', $user->id) }}" method="POST" style="display: none;">
                     @csrf

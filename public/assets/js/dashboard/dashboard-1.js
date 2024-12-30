@@ -1,6 +1,127 @@
 (function($) {
     "use strict";
 
+    // Data for the pie chart
+    var usedCoupons = 120; // Number of used coupons
+    var expiredCoupons = 80; // Number of expired coupons
+
+    // Calculate percentages
+    var totalCoupons = usedCoupons + expiredCoupons;
+    var usedPercentage = (usedCoupons / totalCoupons) * 100;
+    var expiredPercentage = (expiredCoupons / totalCoupons) * 100;
+
+    // Get the context of the canvas element
+    var ctx = document.getElementById('coupon-pie-chart').getContext('2d');
+
+    // Create the pie chart
+    new Chart(ctx, {
+        type: 'pie',
+        data: {
+            labels: [
+                `Used Coupons (${usedCoupons})`,
+                `Expired Coupons (${expiredCoupons})`
+            ],
+            datasets: [{
+                data: [usedPercentage, expiredPercentage],
+                backgroundColor: [
+                    'rgba(54, 162, 235, 0.7)', // Blue
+                    'rgba(255, 99, 132, 0.7)'  // Red
+                ],
+                hoverBackgroundColor: [
+                    'rgba(54, 162, 235, 0.9)',
+                    'rgba(255, 99, 132, 0.9)'
+                ]
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    position: 'top',
+                },
+                tooltip: {
+                    callbacks: {
+                        label: function(context) {
+                            var label = context.label || '';
+                            if (label) {
+                                label += ': ';
+                            }
+                            label += context.raw.toFixed(2) + '%';
+                            return label;
+                        }
+                    }
+                }
+            }
+        }
+    });
+
+})(jQuery);
+
+
+(function($) {
+    "use strict";
+
+    // Prepare labels for months
+    var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+
+    // Prepare datasets dynamically
+    var datasets = [];
+    Object.keys(chartData).forEach(function(currency) {
+        datasets.push({
+            label: currency,
+            data: Object.values(chartData[currency]),
+            borderColor: {
+                'USD': '#1E90FF',
+                'AED': '#FF6347',
+                'EURO': '#32CD32',
+                'GBP': '#FFD700'
+            }[currency],
+            fill: false
+        });
+    });
+
+    // Line chart
+    var ctx = document.getElementById('sales-line-chart').getContext('2d');
+    var salesLineChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: months, // X-axis labels
+            datasets: datasets // Dynamic datasets
+        },
+        options: {
+            responsive: true,
+            scales: {
+                x: {
+                    type: 'category',
+                    title: {
+                        display: true,
+                        text: 'Months'
+                    }
+                },
+                y: {
+                    beginAtZero: true,
+                    title: {
+                        display: true,
+                        text: 'Total Amount'
+                    }
+                }
+            },
+            plugins: {
+                legend: {
+                    position: 'top',
+                }
+            },
+            maintainAspectRatio: false
+        }
+    });
+
+})(jQuery);
+
+
+
+(function($) {
+    "use strict";
+
 
 
     // Morris bar chart

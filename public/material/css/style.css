@@ -38,11 +38,59 @@
 /* BASE - Base tyles, Variables, Mixins, etc. */
 body {
   background-color: #ffffff;
-  font-family: "Lato", sans-serif;
+  font-family: "nabi", sans-serif;
   color: #333333;
   font-size: 16px;
   overflow-x: hidden;
 }
+
+/* Activity */
+.dashboard .activity {
+  font-size: 14px;
+}
+
+.dashboard .activity .activity-item .activite-label {
+  color: #888;
+  position: relative;
+  flex-shrink: 0;
+  flex-grow: 0;
+  min-width: 64px;
+}
+
+.dashboard .activity .activity-item .activite-label::before {
+  content: "";
+  position: absolute;
+  right: -11px;
+  width: 4px;
+  top: 0;
+  bottom: 0;
+  background-color: #eceefe;
+}
+
+.dashboard .activity .activity-item .activity-badge {
+  margin-top: 3px;
+  z-index: 1;
+  font-size: 11px;
+  line-height: 0;
+  border-radius: 50%;
+  flex-shrink: 0;
+  border: 3px solid #fff;
+  flex-grow: 0;
+}
+
+.dashboard .activity .activity-item .activity-content {
+  padding-left: 10px;
+  padding-bottom: 20px;
+}
+
+.dashboard .activity .activity-item:first-child .activite-label::before {
+  top: 5px;
+}
+
+.dashboard .activity .activity-item:last-child .activity-content {
+  padding-bottom: 0;
+}
+
 
 .no-padding {
   padding: 0;
@@ -1702,12 +1750,12 @@ img {
 }
 
 #aa-subscribe {
-  display: inline;
+  display: block;
   float: left;
   width: 100%;
 }
 #aa-subscribe .aa-subscribe-area {
-  display: inline;
+  display: block;
   float: left;
   padding: 50px 0;
   width: 100%;
@@ -1715,7 +1763,7 @@ img {
 }
 #aa-subscribe .aa-subscribe-area h3 {
   color: #222;
-  font-size: 26px;
+  font-size: 20px;
   font-weight: bold;
   margin-bottom: 5px;
   margin-top: 0;
@@ -1729,16 +1777,10 @@ img {
 #aa-subscribe .aa-subscribe-area .aa-subscribe-form {
   margin: 20px auto 0;
   position: relative;
-  width: 450px;
+  width: 320px;
 }
-#aa-subscribe .aa-subscribe-area .aa-subscribe-form input[type="email"] {
-  border: 1px solid #ccc;
-  color: #555;
-  height: 40px;
-  padding: 5px 125px 5px 10px;
-  width: 100%;
-}
-#aa-subscribe .aa-subscribe-area .aa-subscribe-form input[type="submit"] {
+
+/*#aa-subscribe .aa-subscribe-area .aa-subscribe-form input[type="submit"] {
   color: #fff;
   font-size: 15px;
   font-weight: bold;
@@ -1749,7 +1791,7 @@ img {
   text-transform: uppercase;
   top: 0;
   width: 120px;
-}
+}*/
 
 /*==================
  PRODUCT PAGE

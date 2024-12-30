@@ -14,9 +14,10 @@ class Review extends Model
         'comment'
         
     ];
-    public function user(){
-       return $this->belongTo(User::class);
-    }
+    public function user()
+{
+    return $this->belongsTo(User::class); // Correct the method name to 'belongsTo'
+}
     public function product(){
         return $this->belongsTo(Product::class);
      }

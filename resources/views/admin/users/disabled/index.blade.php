@@ -73,9 +73,10 @@
                     @csrf
                     <button type="button" class="btn btn-primary text-white" onclick="confirmRestore({{ $user->id }})"><i class="fas fa-undo"></i></button>
                 </form>
+                @if(auth()->check() && auth()->user()->role === 'owner')
                 <!-- Hard Delete Button with SweetAlert -->
-                <button class="btn btn-danger text-white" onclick="confirmHardDelete({{ $user->id }})"><i class="fa fa-trash "></i></button>
-
+                   <button class="btn btn-danger text-white" onclick="confirmHardDelete({{ $user->id }})"><i class="fa fa-trash "></i></button>
+                @endif
                 
 
                 <!-- Hard Delete Form -->

@@ -9,9 +9,9 @@ class Shipping extends Model
     //
     protected $fillable = [
         'order_id',   // Foreign key to relate to order table
-        'first_name',
-        'last_name',
-        'country',
+        'transpoter_id',
+        'shipment_method_id',
+        'country_id',
         'town',
         'district',
         'street',
@@ -21,5 +21,19 @@ class Shipping extends Model
 
     public function order(){
         return $this->belongTo(Order::class);
+    }
+    public function transpoter()
+    {
+        return $this->belongsTo(Transpoter::class);
+    }
+
+    public function shipmentMethod()
+    {
+        return $this->belongsTo(ShipmentMethod::class);
+    }
+
+    public function country()
+    {
+        return $this->belongsTo(DestinationCountry::class, 'country_id');
     }
 }

@@ -8,13 +8,13 @@
             <div class="col-sm-6 p-md-0">
                 <div class="welcome-text">
                     <h4>Hi, welcome back!</h4>
-                    <p class="mb-0">Your business dashboard template</p>
+                    <p class="mb-0">Your Carousel CMS  dashboard </p>
                 </div>
             </div>
             <div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="javascript:void(0)">Table</a></li>
-                    <li class="breadcrumb-item active"><a href="javascript:void(0)">Bootstrap</a></li>
+                    <li class="breadcrumb-item"><a href="javascript:void(0)">Carousel</a></li>
+                    <li class="breadcrumb-item active"><a href="javascript:void(0)">Content</a></li>
                 </ol>
             </div>
         </div>
@@ -32,7 +32,7 @@
                                 <thead>
                                     <tr>
                                         <th>Image</th>
-                                        <th>Caption 1 1</th>
+                                        <th>Caption 1 </th>
                                         <th>Caption 2</th>
                                         <th>Description</th>
                                         <th>Action</th>

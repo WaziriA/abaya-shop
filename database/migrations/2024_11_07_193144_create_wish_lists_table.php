@@ -11,13 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('agents', function (Blueprint $table) {
+        Schema::create('wish_lists', function (Blueprint $table) {
             $table->id();
-            $table->string('agent_name');
-            $table->string('destination_country');
-            $table->string('from');
-            $table->string('to');
-            $table->float('cost');
             $table->timestamps();
         });
     }
@@ -27,6 +22,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('agents');
+        Schema::dropIfExists('wish_lists');
     }
 };

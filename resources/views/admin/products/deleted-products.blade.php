@@ -99,7 +99,7 @@
                                                   <i class="fas fa-undo"></i>
                                                 </button>
                                             </form>
-
+                                            @if(auth()->check() && auth()->user()->role === 'owner')
                                             <!-- Permanently Delete Button -->
                                             <form id="delete-form-{{ $product->id }}" action="{{ route('products.forceDelete', $product->id) }}" method="POST" style="display:inline;">
                                                 @csrf
@@ -108,6 +108,7 @@
                                                    <i class="fas fa-trash"></i>
                                                </button>
                                             </form>
+                                            @endif
                                         </td>
                                     </tr>
                                 @endforeach

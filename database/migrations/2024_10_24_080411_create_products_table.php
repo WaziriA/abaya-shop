@@ -15,18 +15,21 @@ return new class extends Migration
             $table->id();
             $table->foreignId('category_id')->constrained()->onDelete('cascade');
             $table->string('name');
-            $table->string('description');
+            $table->text('description');
             $table->string('brand');
-            $table->string('price');
+            $table->decimal('price_usd', 10, 2); // Price in USD (default)
+            $table->decimal('price_gbp', 10, 2)->nullable(); // Price in GBP
+            $table->decimal('price_eur', 10, 2)->nullable(); // Price in EUR
+            $table->decimal('price_aed', 10, 2)->nullable(); // Price in AED
             $table->string('sku');
             $table->integer('stock');
             $table->enum('availability_status', ['in-stock', 'out-of-stock', 'low-stock']);
-            $table->string('color');
-            $table->string('size');
+            $table->string('color')->nullable();
+            $table->string('size')->nullable();
             $table->integer('view_count')->default(0);
-            $table->enum('status', ['new', 'trending', 'sold-out', 'sale', 'hot', 'pupular']);
-            $table->string('location');
-            $table->string('image');
+            $table->enum('status', ['new', 'trending', 'sold-out', 'sale', 'hot', 'popular']);
+            $table->string('location')->nullable();
+            $table->string('image')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

@@ -22,7 +22,24 @@
             <label for="image">Image</label>
             <input type="file" name="image" id="image" class="form-control" required accept="image/*">
         </div>
-        <div class="col-lg-8">
+        <div class="col-md-4">
+            <label for="sku">SKU</label>
+            <input type="text" name="sku" id="sku" class="form-control" required>
+        </div>
+        <div class="col-md-4">
+            <label for="category_id">Category</label>
+            <select name="category_id" id="category_id" class="form-control" required>
+                <option value=""></option>
+                @foreach ($categories as $item)
+                <option value="{{ $item->id }}">{{ $item->name }}</option>
+                @endforeach
+                
+            </select>
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-4">
             <img id="imagePreview" src="" alt="Image Preview" style="display: none; max-width: 100%; height: auto;" />
         </div>
     </div>
@@ -47,25 +64,12 @@
 
 
                         <!-- Section 2: SKU, Category, Name, Description -->
-                        <h4>Basic Information</h4>
+                        <h4>Basic Information & Prices</h4>
                         <section>
                             <p class="text-primary"> Fill all details in these section</p>
                             <div class="row">
-                                <div class="col-md-6">
-                                    <label for="sku">SKU</label>
-                                    <input type="text" name="sku" id="sku" class="form-control" required>
-                                </div>
-                                <div class="col-md-6">
-                                    <label for="category_id">Category</label>
-                                    <select name="category_id" id="category_id" class="form-control" required>
-                                        <option value=""></option>
-                                        @foreach ($categories as $item)
-                                        <option value="{{ $item->id }}">{{ $item->name }}</option>
-                                        @endforeach
-                                        
-                                    </select>
-
-                                </div>
+                                
+                                
                                 <div class="col-md-6">
                                     <label for="name">Name</label>
                                     <input type="text" name="name" id="name" class="form-control" required>
@@ -73,6 +77,25 @@
                                 <div class="col-md-6">
                                     <label for="description">Description</label>
                                     <textarea name="description" id="description" class="form-control"></textarea>
+                                </div>
+
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <label for="price_usd">Price(USD)</label>
+                                    <input type="number" name="price_usd" class="form-control" required>
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="price_gbp">Price(GBP)</label>
+                                    <input type="number" name="price_gbp" class="form-control" required>
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="price_eur">Price(Euro)</label>
+                                    <input type="number" name="price_eur" class="form-control" required>
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="price_aed">Price(AED)</label>
+                                    <input type="number" name="price_aed" class="form-control" required>
                                 </div>
                             </div>
                         </section>
@@ -94,10 +117,10 @@
                                     <label for="size">Size</label>
                                     <input type="text" name="size" class="form-control" required>
                                 </div>
-                                <div class="col-md-6">
+                               <!-- <div class="col-md-6">
                                     <label for="price">Price</label>
                                     <input type="number" step="0.01" name="price" class="form-control" required>
-                                </div>
+                                </div>-->
                             </div>
                         </section>
 

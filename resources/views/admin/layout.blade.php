@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Sadah 1 Abaya :: Dashboard </title>
     <!-- Favicon icon -->
-    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('material/img/logo.jpg')}}">
     <link rel="stylesheet" href="{{ asset('assets/vendor/owl-carousel/css/owl.carousel.min.css')}}">
     <link rel="stylesheet" href="{{ asset('assets/vendor/owl-carousel/css/owl.theme.default.min.css')}}">
     <link href="{{ asset('assets/vendor/jqvmap/css/jqvmap.min.css" rel="stylesheet')}}">
@@ -108,6 +108,8 @@
 
       <!-- All init script -->
       <script src="{{ asset('assets/js/plugins-init/toastr-init.js')}}"></script>
+
+      
 
       <!-- The Flash Message-->
       <script>
@@ -236,7 +238,7 @@
                 }
             });
         }
-    </script>
+</script>
 
     <!-- This is the Sweet message for the restoring the product-->
     <script>
@@ -365,9 +367,7 @@
             }
         });
     }
-</script>
-<!--Restore the users-->
-<script>
+
     function confirmRestore(id) {
         swal({
             title: "Are you sure to restore this user?",
@@ -399,6 +399,8 @@
         });
     }
 </script>
+<!--Restore the users-->
+
 
 <!--Sweet Alert For delete in Home Carousel Items-->
 
@@ -543,6 +545,243 @@
                 document.getElementById('delete-form-' + id).submit();
             } else {
                 swal("Cancelled", "The coupon was not deleted.", "error");
+            }
+        });
+    }
+</script>
+
+<!--Transpoter Name/ Agent names-->
+<script>
+    // Function for Soft Delete
+    function confirmAgentSoftDelete(id) {
+        swal({
+            title: "Are you sure to delete?",
+            text: "This will archive the transporter, and you can restore it later.",
+            icon: "warning",
+            buttons: {
+                cancel: {
+                    text: "No, cancel it!",
+                    visible: true,
+                    className: "btn-secondary",
+                    closeModal: true,
+                },
+                confirm: {
+                    text: "Yes, soft delete it!",
+                    visible: true,
+                    className: "btn-warning",
+                    closeModal: false
+                }
+            }
+        }).then((willDelete) => {
+            if (willDelete) {
+                document.getElementById('soft-delete-form-' + id).submit();
+            } else {
+                swal("Cancelled", "The transporter is safe!", "error");
+            }
+        });
+    }
+
+    // Function for Permanent Delete
+    function confirmAgentHardDelete(id) {
+        swal({
+            title: "Are you sure to permanently delete?",
+            text: "This action cannot be undone!",
+            icon: "warning",
+            buttons: {
+                cancel: {
+                    text: "No, cancel it!",
+                    visible: true,
+                    className: "btn-secondary",
+                    closeModal: true,
+                },
+                confirm: {
+                    text: "Yes, permanently delete it!",
+                    visible: true,
+                    className: "btn-danger",
+                    closeModal: false
+                }
+            }
+        }).then((willDelete) => {
+            if (willDelete) {
+                document.getElementById('hard-delete-form-' + id).submit();
+            } else {
+                swal("Cancelled", "The transporter is safe!", "error");
+            }
+        });
+    }
+
+    // Function for Soft Delete
+    function confirmCostSofttDelete(id) {
+        Swal.fire({
+            title: "Are you sure to delete?",
+            text: "This will archive the agent, and you can restore it later.",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: '#FFC107', // Bootstrap warning color
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, soft delete it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                document.getElementById('delete-form-' + id).submit();
+            } else {
+                Swal.fire("Cancelled", "The agent is safe!", "error");
+            }
+        });
+    }
+
+    // Function for Permanent Delete
+    function confirmCostHardtDelete(id) {
+        Swal.fire({
+            title: "Are you sure to permanently delete?",
+            text: "This action cannot be undone!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: '#DC3545', // Bootstrap danger color
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, permanently delete it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                document.getElementById('hard-delete-form-' + id).submit();
+            } else {
+                Swal.fire("Cancelled", "The agent is safe!", "error");
+            }
+        });
+    }
+
+   // Confirm soft delete for agent
+function confirmCostSofttDelete(id) {
+    swal({
+        title: "Are you sure to soft delete this agent?",
+        text: "You can restore this agent later.",
+        icon: "warning",
+        buttons: {
+            cancel: {
+                text: "No, cancel it!",
+                value: null,
+                visible: true,
+                className: "btn-secondary",
+                closeModal: true,
+            },
+            confirm: {
+                text: "Yes, soft delete it!",
+                value: true,
+                visible: true,
+                className: "btn-warning",
+                closeModal: false
+            }
+        }
+    }).then((willDelete) => {
+        if (willDelete) {
+            // Submit the soft delete form via AJAX
+            document.getElementById('delete-form-' + id).submit();
+        } else {
+            swal("Cancelled", "The agent remains active!", "info");
+        }
+    });
+}
+
+// Confirm hard delete for agent
+function confirmCostHardtDelete(id) {
+    swal({
+        title: "Are you sure to permanently delete this agent?",
+        text: "This action cannot be undone!",
+        icon: "warning",
+        buttons: {
+            cancel: {
+                text: "No, cancel it!",
+                value: null,
+                visible: true,
+                className: "btn-secondary",
+                closeModal: true,
+            },
+            confirm: {
+                text: "Yes, permanently delete it!",
+                value: true,
+                visible: true,
+                className: "btn-danger",
+                closeModal: false
+            }
+        }
+    }).then((willDelete) => {
+        if (willDelete) {
+            // Submit the hard delete form via AJAX
+            document.getElementById('hard-delete-form-' + id).submit();
+        } else {
+            swal("Cancelled", "The agent is safe!", "info");
+        }
+    });
+}
+// Confirm restore for soft-deleted agent
+function restoreCostConfirmation(id) {
+    swal({
+        title: "Are you sure to restore this agent?",
+        text: "The agent will be restored to the active list!",
+        icon: "warning",
+        buttons: {
+            cancel: {
+                text: "No, cancel it!",
+                value: null,
+                visible: true,
+                className: "btn-secondary",
+                closeModal: true,
+            },
+            confirm: {
+                text: "Yes, restore it!",
+                value: true,
+                visible: true,
+                className: "btn-success",
+                closeModal: false
+            }
+        }
+    }).then((willRestore) => {
+        if (willRestore) {
+            // Submit the restore form via AJAX
+            document.getElementById('restore-form-' + id).submit();
+        } else {
+            swal("Cancelled", "The agent remains deactivated!", "info");
+        }
+    });
+}
+function confirmOrderHardDelete(id) {
+    Swal.fire({
+        title: "Are you sure to permanently delete?",
+        text: "This action cannot be undone!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: '#d33',
+        cancelButtonColor: '#3085d6',
+        confirmButtonText: "Yes, delete it permanently!",
+        cancelButtonText: "No, cancel it!"
+    }).then((willDelete) => {
+        if (willDelete) {
+            // Submit the hard delete form
+            document.getElementById('order-hard-delete-form-' + id).submit();
+        } else {
+            Swal.fire("Cancelled", "The order is safe!", "info");
+        }
+    });
+}
+
+
+</script>
+
+<script>
+    function confirmTestimonialDelete(event) {
+        event.preventDefault();  // Prevent the form from being submitted immediately
+
+        // Show SweetAlert confirmation dialog
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to undo this action!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Yes, delete it!',
+            cancelButtonText: 'No, cancel!',
+            reverseButtons: true
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // If confirmed, submit the form
+                event.target.closest('form').submit();
             }
         });
     }

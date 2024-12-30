@@ -7,7 +7,7 @@
             <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i
                         class="icon icon-single-04"></i><span class="nav-text">Dashboard</span></a>
                 <ul aria-expanded="false">
-                    <li><a href="./index.html">Dashboard </a></li>
+                    <li><a href="{{ route('dashboard.index')}}">Dashboard </a></li>
                     
                 </ul>
             </li>
@@ -27,7 +27,7 @@
                     <li><a href="{{ route('customer.index')}}">Customers</a></li>
                     <li><a href="{{ route('admin-users.showTrash')}}">Disabled Users</a></li>
                     <li><a href="{{ route('subscribers.index')}}">Subscribers</a></li>
-                    <li><a href="#">User Activity</a></li>
+                    <li><a href="{{ route('user-activity.index')}}">User Activity</a></li>
                 </ul>
             </li>
 
@@ -43,16 +43,32 @@
                         <li><a href="#">Pending Orders</a></li>
                     </ul>
                             </li>
-                   <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">Offline Orders</a>
+                {{--   <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">Offline Orders</a>
                       <ul aria-expanded="false">
                         <li><a href="{{ route('offline-order.index')}}">All Orders</a></li>
                         <li><a href="{{ route('complete-order.index')}}">Complete Orders</a></li>
                         <li><a href="{{ route('transit-order.index')}}">In Transit Orders</a></li>
                         <li><a href="{{ route('pending-order.index')}}">Pending Orders</a></li>
                      </ul>
+                   </li>--}}
+                   <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">Agents</a>
+                       <ul aria-expanded="false">
+                          <li><a href="{{ route('transpoter.index')}}">Add Agents</a></li>
+                          <li><a href="{{ route('transporters.trashed')}}">Trashed Agents</a></li>
+                         
+                      </ul>
                    </li>
-                   <li><a href="#">Shipping</a></li>
-                   <li><a href="#">Shipping Agents</a></li>
+
+                   <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">Shipping Costs</a>
+                    <ul aria-expanded="false">
+                        <li><a href="{{ route('cost.index')}}">Shipping Costs</a></li>
+                       <li><a href="{{ route('agent.trashed')}}">Trashed Shipping Cost</a></li>
+                      
+                   </ul>
+                   <li><a href="{{ route('order.feedback')}}">Feedbacks</a></li>
+                </li>
+                   
+                   
                 </ul>
                 
             </li>
@@ -64,6 +80,7 @@
                     <li><a href="{{ route('admin-product.index')}}">View Products</a></li>
                     <li><a href="{{ route('stock.index')}}">Stock Level</a></li>
                     <li><a href="{{ route('products.deleted')}}">Deleted Products</a></li>
+                    <li><a href="{{ route('admin.reviews')}}">Reviews</a></li>
                     
                   
 
@@ -87,7 +104,7 @@
                             <ul aria-expanded="false">
                                 <li><a href="{{ route('cms.index')}}">Carousel Items</a></li>
                                 <li><a href="{{ route('carousel.trashed')}}">Carousel Trashed Items</a></li>
-                                <!--<li><a href="#">In Transit Orders</a></li>
+                                <li><a href="{{ route('testimonials.index')}}">Testimonials</a></li>
                                 <li><a href="#">Pending Orders</a></li>-->
                             </ul>
                 
@@ -114,8 +131,8 @@
             <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i
                         class="icon icon-single-04"></i><span class="nav-text">Profile</span></a>
                 <ul aria-expanded="false">
-                    <li><a href="#">View profile</a></li>
-                    <li><a href="#">Change Password</a></li>
+                    <li><a href="{{ route('profile.index')}}">View profile</a></li>
+                    <li><a href="{{ route('profile.change-password.form')}}">Change Password</a></li>
                     <li> 
                         <form id="logoutForm" action="{{ route('logout') }}" method="POST" style="display: inline;">
                         @csrf

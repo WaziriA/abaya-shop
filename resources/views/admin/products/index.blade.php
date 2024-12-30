@@ -80,13 +80,14 @@
                                                     @method('DELETE')
                                                     <button type="submit" class="btn btn-warning fa fa-trash text-white ms-2 sweet-alert1"  title="Soft Delete"></button>
                                                 </form>
-                                        
+                                                @if(auth()->check() && auth()->user()->role === 'owner')
                                                 <!-- Hard Delete Button -->
                                                 <form action="{{ route('products.forceDelete', $product->id) }}" method="POST" class="d-inline hard-delete-form">
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" class="btn btn-danger fa fa-trash text-white ms-2 sweet-alert1"  title="Hard Delete"></button>
                                                 </form>
+                                                @endif
                                             </div>
                                         </td>
                                         

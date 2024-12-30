@@ -3,7 +3,7 @@
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="title" id="QuickViewModalLabel{{ $product->id}}">Product Specifications</h4>
+                <h4 class="title" id="QuickViewModalLabel{{ $product->id}}" style="font-family: nabi;">Product Specifications</h4>
             </div>
             
                 <div class="modal-body" style="max-height: 480px; overflow:auto;">
@@ -50,7 +50,7 @@
                           <div class="aa-product-view-content">
                             <h3>{{ $product->name}}</h3>
                             <div class="aa-price-block">
-                              <span class="aa-product-view-price">${{ $product->price}}</span>
+                              <span class="aa-product-view-price">{{ $currency }} {{ number_format($product->price, 2) }}</span>
                               <p class="aa-product-availability">
                                 Availability: 
                                 <span class="{{ $product->availability_status === 'in-stock' ? 'text-success' : 'text-danger' }}">
@@ -61,7 +61,7 @@
 
                             <p>{{ $product->description}}</p>
                             
-                            <h4>Choose Size</h4>
+                           <!-- <h4>Choose Size</h4>
                             <div class="aa-prod-view-size">
                               <a href="#">S</a>
                               <a href="#">M</a>
@@ -69,11 +69,11 @@
                               <a href="#">XL</a>
                               <a href="#">XXL</a>
                               <a href="#">XXXL</a>
-                            </div>
+                            </div>-->
 
                             <div class="aa-prod-quantity mt-2">
                               <form action="">
-                                <select name="" id="">
+                              <!--  <select name="" id="">
                                   <option value="0" selected="1">1</option>
                                   <option value="1">2</option>
                                   <option value="2">3</option>
@@ -81,14 +81,17 @@
                                   <option value="4">5</option>
                                   <option value="5">6</option>
                                 </select>
-                              </form>
+                              </form>-->
                               <p class="aa-prod-category">
                                 Category: <a href="#">{{ $product->category->name}}</a>
                               </p>
                             </div>
                             <div class="aa-prod-view-bottom">
-                              <a href="#" class="aa-add-to-cart-btn"><span class="fa fa-shopping-cart"></span>Add To Cart</a>
-                              <a href="#" class="aa-add-to-cart-btn">View Details</a>
+                              <form id="add-to-cart-form-{{ $product->id }}"  data-url="{{ route('cart.add', $product->id) }}">
+                                @csrf
+                              <a href="#" class="aa-add-to-cart-btn btn btn-primary" onclick="addToCart({{ $product->id }})"><span class="fa fa-shopping-cart"></span>Add To Cart</a>
+                              </form>
+                              <a href="{{ route('single-detail.index', ['id' => $product->id])}}" class="aa-add-to-cart-btn">View Details</a>
                             </div>
                           </div>
                         </div>
@@ -97,7 +100,7 @@
                 </div>
                 <div class="modal-footer">
                     
-                    <button type="button" class="btn btn-danger waves-effect" data-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-danger waves-effect" data-dismiss="modal" style="font-family: nabi;">Cancel</button>
                 </div>
             
         </div>

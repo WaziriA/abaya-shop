@@ -64,16 +64,33 @@
                                         <label for="color">Color</label>
                                         <input type="text" name="color" class="form-control" value="{{ old('color') }}">
                                     </div>
-                                    <div class="col-md-6">
+                                    <div class="col-md-12">
                                         <label for="size">Size</label>
                                         <input type="text" name="size" class="form-control" value="{{ old('size') }}">
                                     </div>
-                                    <div class="col-md-6">
-                                        <label for="price">Price</label>
-                                        <input type="number" step="0.01" name="price" class="form-control" value="{{ old('price') }}">
-                                    </div>
+                                    
                                 </div>
                             
+                                <h4>Product Prices</h4>
+                                <div class="row mt-2 mb-4">
+                                    <div class="col-md-6">
+                                        <label for="price_usd">Price(USD)</label>
+                                        <input type="number" name="price_usd" class="form-control" value="{{ old('brand') }}">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="price_gbp">Price(GPB)</label>
+                                        <input type="number" name="price_gbp" class="form-control" value="{{ old('color') }}">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="price_eur">Price(Euro)</label>
+                                        <input type="number" name="price_eur" class="form-control" value="{{ old('size') }}">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="price_aed">Price(AED)</label>
+                                        <input type="number" step="0.01" name="price_aed" class="form-control" value="{{ old('price') }}">
+                                    </div>
+                                </div>
+
                                 <h4>Inventory & Location</h4>
                                 <div class="row mt-2 mb-4">
                                     <div class="col-md-6">
